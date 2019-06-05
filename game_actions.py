@@ -9,8 +9,8 @@ class GameActions:
         self.actions = actions
 
     def handle_action(self):
-        argument = None
         while True:
+            argument = None
             user_input = helper.read_user_input().split()
 
             if not user_input:

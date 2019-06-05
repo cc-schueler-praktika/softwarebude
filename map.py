@@ -24,10 +24,15 @@ class Map:
                        )
         server_room = Room('Serverraum', 'Der Serverraum. Ganz schön viele Kabel liegen hier ...')
 
-        stairwell.set_exits({'norden': office})
+        emergancy_exit = Room ('Notausgang',
+                               'Der Notausgang! Die Sonne scheint und die Vögel zwitschern.')
+
+
+        stairwell.set_exits({'norden': office, 'süden':emergancy_exit})
         office.set_exits({'süden': stairwell, 'osten': kitchen, 'westen': server_room})
         kitchen.set_exits({'westen': office})
         server_room.set_exits({'osten': office})
+        emergancy_exit.set_exits({'norden':stairwell})
 
         office.set_persons({
             'robin': Person('Robin',
@@ -55,6 +60,13 @@ class Map:
                            'Thema weiter zu entwicklen.')
         })
 
+        emergancy_exit.set_persons({
+            'peter':Person('Peter',
+                           'am rauchen',
+                           'Mit 15 Jahren habe ich meine Ausbildung angefangen. Schnell wurde mir klar, dass man '
+                           'um den Bereich der Informatik nicht mehr drum herum kommt. Also habe ich IT studiert.')
+        })
+
         self.rooms = [stairwell, office]
 
     def go_in_direction(self, direction=None):
@@ -68,7 +80,7 @@ class Map:
         self.current_room = room
         self.current_room.show_description()
 
-    def look(self):
+    def look(self, somewhere):
         self.current_room.show_content()
 
     def greet_person(self, name):
