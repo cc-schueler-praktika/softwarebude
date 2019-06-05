@@ -15,6 +15,8 @@ class Map:
                          'Das Treppenhaus. Nicht viel los hier. Aber hey, da steht eine Tür offen.'
                          'Aus dem Büro hört man leise Stimmen. Hinter dir fährt der Aufzug wieder nach unten.'
                          )
+
+
         office = Room('Büro',
                       'Das Büro. In diesem Büro ist alles ziemlich dunkel. Viele Schreibtische gibt es hier'
                       'Vereinzelt sitzen Personen zusammen und besprechen Dinge. Einer trinkt Kaffee.'
@@ -60,12 +62,6 @@ class Map:
                            'Thema weiter zu entwicklen.')
         })
 
-        emergancy_exit.set_persons({
-            'peter':Person('Peter',
-                           'am rauchen',
-                           'Mit 15 Jahren habe ich meine Ausbildung angefangen. Schnell wurde mir klar, dass man '
-                           'um den Bereich der Informatik nicht mehr drum herum kommt. Also habe ich IT studiert.')
-        })
 
         self.rooms = [stairwell, office]
 
@@ -80,7 +76,7 @@ class Map:
         self.current_room = room
         self.current_room.show_description()
 
-    def look(self, somewhere):
+    def look(self):
         self.current_room.show_content()
 
     def greet_person(self, name):
