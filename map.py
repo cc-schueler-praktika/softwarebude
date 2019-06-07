@@ -36,7 +36,7 @@ class Map:
                                   'Das ist ein Arbeitsplatz. Hier knobeln die Mitarbeiter an Schwierigen aufgaben.',
                                   task)     # TODO: Is task really necessary?
 
-        stairwell.set_exits({'norden': office, 'süden':emergancy_exit, 'westen':escape_room}) #TODO: Delet exit to escspe_room! Only for faster testing.
+        stairwell.set_exits({'norden': office, 'süden':emergancy_exit})
         office.set_exits({'süden': stairwell, 'osten': kitchen, 'westen': server_room})
         kitchen.set_exits({'westen': office})
         server_room.set_exits({'osten': office, 'süden' : escape_room})
