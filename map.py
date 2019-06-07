@@ -1,5 +1,6 @@
 from person import Person
 from room import Room
+from escape_room import EscapeRoom
 
 
 class Map:
@@ -8,7 +9,7 @@ class Map:
         self.rooms = []
         self.init_rooms()
         self.current_room = self.rooms[0]
-        self.enter_room(self.current_room)
+        self.enter_room(None, self.current_room)
 
     def init_rooms(self):
         stairwell = Room('Treppenhaus',
@@ -29,11 +30,16 @@ class Map:
         emergancy_exit = Room ('Notausgang',
                                'Der Notausgang! Die Sonne scheint und die Vögel zwitschern.')
 
+        task = ''
 
-        stairwell.set_exits({'norden': office, 'süden':emergancy_exit})
+        escape_room = EscapeRoom ('Arbeitsplaz',
+                                  'Das ist ein Arbeitsplatz. Hier knobeln die Mitarbeiter an Schwierigen aufgaben.',
+                                  task)     # TODO: Is task really necessary?
+
+        stairwell.set_exits({'norden': office, 'süden':emergancy_exit, 'westen':escape_room}) #TODO: Delet exit to escspe_room! Only for faster testing.
         office.set_exits({'süden': stairwell, 'osten': kitchen, 'westen': server_room})
         kitchen.set_exits({'westen': office})
-        server_room.set_exits({'osten': office})
+        server_room.set_exits({'osten': office, 'süden' : escape_room})
         emergancy_exit.set_exits({'norden':stairwell})
 
         office.set_persons({
@@ -62,19 +68,23 @@ class Map:
                            'Thema weiter zu entwicklen.')
         })
 
-
-        self.rooms = [stairwell, office]
+        self.rooms = [stairwell, office, escape_room, server_room]
 
     def go_in_direction(self, direction=None):
         if not direction or direction not in self.current_room.exits:
             print('Ich kann da nicht hin gehen.')
             return
-        self.enter_room(self.current_room.exits[direction])
+        self.enter_room(self.current_room, self.current_room.exits[direction])
 
-    def enter_room(self, room):
-        print('🚪 Öffne Tür zu Raum', room.name)
-        self.current_room = room
+    def enter_room(self, from_room, to_room):
+        print('🚪 Öffne Tür zu Raum', to_room.name)
+        self.current_room = to_room
         self.current_room.show_description()
+        if self.current_room == self.rooms[2]:
+            self.rooms[2].escape_room_intro()
+            print('🚪 Du bist Zurück im Serverraum')
+            self.current_room = from_room
+            self.current_room.show_description()
 
     def look(self):
         self.current_room.show_content()
