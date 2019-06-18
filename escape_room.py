@@ -5,9 +5,9 @@ import helper, threading
 
 
 class EscapeRoom(Room):
-    def __init__(self, name, description,  task):
+    def __init__(self, name, description):
         super().__init__(name, description)
-        self.task = task
+        self.task = None
         self.count = None
 
     def escape_room_intro(self):
@@ -24,7 +24,7 @@ class EscapeRoom(Room):
         self.start_task()
         self.count.stop_countdown()
         print('Du hast die Aufgabe erfüllt!!!')
-        print('Gut gemacht! Du bekommst eine Gehaltserhöhung')
+        print('Gut gemacht! Der Code für die Schatzkammer ist 7854')
         helper.wait(2)
 
     def start_task(self):

@@ -1,7 +1,8 @@
 from person import Person
 from room import Room
 from escape_room import EscapeRoom
-
+from treasure_room import TreasureRoom
+import helper
 
 class Map:
 
@@ -30,17 +31,18 @@ class Map:
         emergancy_exit = Room ('Notausgang',
                                'Der Notausgang! Die Sonne scheint und die Vögel zwitschern.')
 
-        task = ''
-
         escape_room = EscapeRoom ('Arbeitsplaz',
-                                  'Das ist ein Arbeitsplatz. Hier knobeln die Mitarbeiter an Schwierigen aufgaben.',
-                                  task)     # TODO: Is task really necessary?
+                                  'Das ist ein Arbeitsplatz. Hier knobeln die Mitarbeiter an Schwierigen aufgaben.')
+
+        treasure_room = TreasureRoom ('Schatzkammer',
+                                      'Die Schatzkammer! Hier sind alle wichtigen Sachen gelagert.')
 
         stairwell.set_exits({'norden': office, 'süden':emergancy_exit})
         office.set_exits({'süden': stairwell, 'osten': kitchen, 'westen': server_room})
-        kitchen.set_exits({'westen': office})
+        kitchen.set_exits({'westen': office, 'norden': treasure_room})
         server_room.set_exits({'osten': office, 'süden' : escape_room})
-        emergancy_exit.set_exits({'norden':stairwell})
+        emergancy_exit.set_exits({'norden': stairwell})
+        treasure_room.set_exits(({'süden':kitchen}))
 
         office.set_persons({
             'robin': Person('Robin',
@@ -68,7 +70,7 @@ class Map:
                            'Thema weiter zu entwicklen.')
         })
 
-        self.rooms = [stairwell, office, escape_room, server_room]
+        self.rooms = [stairwell, office, escape_room, server_room, treasure_room]
 
     def go_in_direction(self, direction=None):
         if not direction or direction not in self.current_room.exits:
@@ -77,6 +79,10 @@ class Map:
         self.enter_room(self.current_room, self.current_room.exits[direction])
 
     def enter_room(self, from_room, to_room):
+        if to_room == self.rooms[4]:
+            if not self.rooms[4].lock_treasure_room('7854'):       # Code for treasure_room
+                print('Die Tür bleibt weiterhin verschlossen.')
+                return
         print('🚪 Öffne Tür zu Raum', to_room.name)
         self.current_room = to_room
         self.current_room.show_description()
@@ -85,6 +91,8 @@ class Map:
             print('🚪 Du bist Zurück im Serverraum')
             self.current_room = from_room
             self.current_room.show_description()
+        if self.current_room == self.rooms[4]:
+            self.rooms[4].intro_treasure_room()
 
     def look(self):
         self.current_room.show_content()
