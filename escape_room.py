@@ -11,14 +11,14 @@ class EscapeRoom(Room):
         self.count = None
 
     def escape_room_intro(self):
-        self.task = Task('Was ist 2+2', '4')  #TODO: Set better question
+        self.task = Task('Wie heißt das erste Program, was jeder Programmierer lernt', 'hello world')
         print('Oh. Hallo. Gut das du da bist. Ich brauche deine Hilfe!')
         helper.wait(2)
         print('Ich komme bei diesem Problem nicht weiter. Kannst du es für mich lösen?')
         helper.wait(2)
         print('Eigentlich hast du keine anderer möglichkeit. Dafür bezahle ich dich schließlich')
         helper.wait(2)
-        self.count = Countdown(20)               # sets time for countdown
+        self.count = Countdown(30)               # sets time for countdown
         self.count.start()                       # starts a new thread
         self.task.show_question()
         self.start_task()
@@ -30,6 +30,7 @@ class EscapeRoom(Room):
     def start_task(self):
         while True:
             answer = input('Wie lautet die Lösung? ')
+            answer = answer.lower()
             if self.count.countdown_expired:
                 raise SystemExit
             print(self.task.is_answer_correct(answer))
