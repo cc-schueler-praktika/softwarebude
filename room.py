@@ -19,9 +19,13 @@ class Room:
             self.persons[person].show_description()
 
     def show_exits(self):
-        for direction in ['Norden', 'Osten', 'Süden', 'Westen']:
+        for direction in ['Norden', 'Osten', 'Süden', 'Westen', 'draußen']:
             if direction.lower() in self.exits:
-                print('🚪 Tür in Richtung', direction)
+                if direction == 'draußen':
+                    print('☼ Treppen nach draußen')
+                else:
+                    print('🚪 Tür in Richtung', direction)
+
 
     def set_exits(self, exits):
         self.exits = exits

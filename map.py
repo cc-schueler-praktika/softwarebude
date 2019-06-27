@@ -31,6 +31,8 @@ class Map:
         emergancy_exit = Room ('Notausgang',
                                'Der Notausgang! Die Sonne scheint und die Vögel zwitschern.')
 
+        the_exit = Room ('Ausgang', 'Du verlässt das Gebäude und gehst nach Hause.')
+
         escape_room = EscapeRoom ('Arbeitsplaz',
                                   'Das ist ein Arbeitsplatz. Hier knobeln die Mitarbeiter an Schwierigen aufgaben.')
 
@@ -41,7 +43,7 @@ class Map:
         office.set_exits({'süden': stairwell, 'osten': kitchen, 'westen': server_room})
         kitchen.set_exits({'westen': office, 'norden': treasure_room})
         server_room.set_exits({'osten': office, 'süden' : escape_room})
-        emergancy_exit.set_exits({'norden': stairwell})
+        emergancy_exit.set_exits({'norden': stairwell, 'draußen': the_exit})
         treasure_room.set_exits(({'süden':kitchen}))
 
         office.set_persons({
@@ -70,7 +72,7 @@ class Map:
                            'Thema weiter zu entwicklen.')
         })
 
-        self.rooms = [stairwell, office, escape_room, server_room, treasure_room]
+        self.rooms = [stairwell, office, escape_room, server_room, treasure_room, the_exit]
 
     def go_in_direction(self, direction=None):
         if not direction or direction not in self.current_room.exits:
@@ -93,6 +95,8 @@ class Map:
             self.current_room.show_description()
         if self.current_room == self.rooms[4]:
             self.rooms[4].intro_treasure_room()
+        if self.current_room == self.rooms[5]:
+            exit()
 
     def look(self):
         self.current_room.show_content()
