@@ -12,11 +12,11 @@ class Map:
 
     def init_rooms(self):
         stairwell = Room('Treppenhaus',
-                         'Das Treppenhaus. Nicht viel los hier. Aber hey, da steht eine Tür offen.'
+                         'Das Treppenhaus. Nicht viel los hier. Aber hey, da steht eine Tür offen. '
                          'Aus dem Büro hört man leise Stimmen. Hinter dir fährt der Aufzug wieder nach unten.'
                          )
         office = Room('Büro',
-                      'Das Büro. In diesem Büro ist alles ziemlich dunkel. Viele Schreibtische gibt es hier'
+                      'Das Büro. In diesem Büro ist alles ziemlich dunkel. Viele Schreibtische gibt es hier. '
                       'Vereinzelt sitzen Personen zusammen und besprechen Dinge. Einer trinkt Kaffee.'
                       )
         kitchen = Room('Küche',
@@ -32,9 +32,9 @@ class Map:
         office.set_persons({
             'robin': Person('Robin',
                             '🧐‍‍',
-                            'Ich habe nach etwas gesucht, das mich jeden Tag etwas Neues herausfinden lässt.'
-                            'Ein "Knobeln" auf Lebenszeit. 😄 Als ich dann bei ein paar Freunden gesehen habe wie'
-                            'viel Spaß sie beim Programmieren in der Schule hatten dachte ich mir, das könnte was'
+                            'Ich habe nach etwas gesucht, das mich jeden Tag etwas Neues herausfinden lässt. '
+                            'Ein "Knobeln" auf Lebenszeit. 😄 Als ich dann bei ein paar Freunden gesehen habe wie '
+                            'viel Spaß sie beim Programmieren in der Schule hatten dachte ich mir, das könnte was '
                             'für mich sein und habe mich für das Studium beworben. Es hat geklappt. 😉'
                             ),
             'julius': Person('Julius',
@@ -48,10 +48,10 @@ class Map:
         kitchen.set_persons({
             'ralf': Person('Ralf',
                            '🤠',
-                           'Mit 12 Jahren habe ich einen gebrauchten Rechner von meinem Bruder geschenkt bekommen'
-                           'und so richtig fasziniert war ich dann später vom C64, auf dem ich dann die ersten'
-                           'Text-Adventures (wie dieses) geschrieben habe. Die Möglichkeiten "echte" Probleme,'
-                           'wie die Tennisplanung meines Vaters schnell zu lösen, haben mich motiviert mich in diesem'
+                           'Mit 12 Jahren habe ich einen gebrauchten Rechner von meinem Bruder geschenkt bekommen '
+                           'und so richtig fasziniert war ich dann später vom C64, auf dem ich dann die ersten '
+                           'Text-Adventures (wie dieses) geschrieben habe. Die Möglichkeiten "echte" Probleme, '
+                           'wie die Tennisplanung meines Vaters schnell zu lösen, haben mich motiviert mich in diesem '
                            'Thema weiter zu entwicklen.')
         })
 
