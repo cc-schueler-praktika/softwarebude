@@ -1,7 +1,7 @@
-from person import Person
-from room import Room
-from escape_room import EscapeRoom
-from treasure_room import TreasureRoom
+from .person import Person
+from .room import Room
+from .escape_room import EscapeRoom
+from .treasure_room import TreasureRoom
 
 
 class Map:

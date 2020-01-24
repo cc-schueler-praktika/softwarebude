@@ -1,10 +1,7 @@
-import sys
-
-import intro
-from action import Action
-from game_actions import GameActions
-from map import Map
-from player import Player
+from softwarebude.action import Action
+from softwarebude.game_actions import GameActions
+from softwarebude.map import Map
+from softwarebude.player import Player
 
 
 class Game:
@@ -49,11 +46,3 @@ class Game:
                 self.player.fart,
             ),
         }
-
-
-if __name__ == "__main__":
-    try:
-        player_name = intro.play()
-        Game(player_name).play()
-    except KeyboardInterrupt:
-        sys.exit(0)

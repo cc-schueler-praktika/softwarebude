@@ -19,6 +19,6 @@ Folgende Vorkenntnisse sind idealerweise vorhanden, wenn dieses Spiel erweitert 
 Gestartet wird das Spiel über die Konsole wie folgt:
 
 ```
-python3 game.py
+./play.py
 ```
 
