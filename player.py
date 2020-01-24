@@ -4,4 +4,5 @@ class Player:
         self.name = name
 
     def fart(self):
+
         print("Du hast gefurzt")

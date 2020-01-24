@@ -1,6 +1,8 @@
 from person import Person
 from room import Room
-
+from escape_room import EscapeRoom
+from treasure_room import TreasureRoom
+import helper
 
 class Map:
 
@@ -8,13 +10,15 @@ class Map:
         self.rooms = []
         self.init_rooms()
         self.current_room = self.rooms[0]
-        self.enter_room(self.current_room)
+        self.enter_room(None, self.current_room)
 
     def init_rooms(self):
         stairwell = Room('Treppenhaus',
                          'Das Treppenhaus. Nicht viel los hier. Aber hey, da steht eine Tür offen. '
                          'Aus dem Büro hört man leise Stimmen. Hinter dir fährt der Aufzug wieder nach unten.'
                          )
+
+
         office = Room('Büro',
                       'Das Büro. In diesem Büro ist alles ziemlich dunkel. Viele Schreibtische gibt es hier. '
                       'Vereinzelt sitzen Personen zusammen und besprechen Dinge. Einer trinkt Kaffee.'
@@ -24,10 +28,21 @@ class Map:
                        )
         server_room = Room('Serverraum', 'Der Serverraum. Ganz schön viele Kabel liegen hier ...')
 
-        stairwell.set_exits({'norden': office})
+        emergancy_exit = Room ('Notausgang',
+                               'Der Notausgang! Die Sonne scheint und die Vögel zwitschern.')
+
+        escape_room = EscapeRoom ('Arbeitsplaz',
+                                  'Das ist ein Arbeitsplatz. Hier knobeln die Mitarbeiter an Schwierigen aufgaben.')
+
+        treasure_room = TreasureRoom ('Schatzkammer',
+                                      'Die Schatzkammer! Hier sind alle wichtigen Sachen gelagert.')
+
+        stairwell.set_exits({'norden': office, 'süden':emergancy_exit})
         office.set_exits({'süden': stairwell, 'osten': kitchen, 'westen': server_room})
-        kitchen.set_exits({'westen': office})
-        server_room.set_exits({'osten': office})
+        kitchen.set_exits({'westen': office, 'norden': treasure_room})
+        server_room.set_exits({'osten': office, 'süden' : escape_room})
+        emergancy_exit.set_exits({'norden': stairwell})
+        treasure_room.set_exits(({'süden':kitchen}))
 
         office.set_persons({
             'robin': Person('Robin',
@@ -55,18 +70,29 @@ class Map:
                            'Thema weiter zu entwicklen.')
         })
 
-        self.rooms = [stairwell, office]
+        self.rooms = [stairwell, office, escape_room, server_room, treasure_room]
 
     def go_in_direction(self, direction=None):
         if not direction or direction not in self.current_room.exits:
             print('Ich kann da nicht hin gehen.')
             return
-        self.enter_room(self.current_room.exits[direction])
+        self.enter_room(self.current_room, self.current_room.exits[direction])
 
-    def enter_room(self, room):
-        print('🚪 Öffne Tür zu Raum', room.name)
-        self.current_room = room
+    def enter_room(self, from_room, to_room):
+        if to_room == self.rooms[4]:
+            if not self.rooms[4].lock_treasure_room('7854'):       # Code for treasure_room
+                print('Die Tür bleibt weiterhin verschlossen.')
+                return
+        print('🚪 Öffne Tür zu Raum', to_room.name)
+        self.current_room = to_room
         self.current_room.show_description()
+        if self.current_room == self.rooms[2]:
+            self.rooms[2].escape_room_intro()
+            print('🚪 Du bist Zurück im Serverraum')
+            self.current_room = from_room
+            self.current_room.show_description()
+        if self.current_room == self.rooms[4]:
+            self.rooms[4].intro_treasure_room()
 
     def look(self):
         self.current_room.show_content()
