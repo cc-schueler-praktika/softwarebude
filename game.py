@@ -25,21 +25,29 @@ class Game:
 
     def create_actions(self):
         return {
-            'schaue': Action('schaue - Zeigt dir, was es in diesem Raum zu sehen gibt.',
-                             self.map.look),
-            'gehe': Action('gehe <Richtung> - Gehe in diese Richtung.',
-                           self.map.go_in_direction),
-            'grüße': Action('grüße <Name> - Begrüße die Person im Raum',
-                            self.map.greet_person),
-            'frage': Action('frage <Name> - Frage eine Person, wie sie zur Software Entwicklung gekommen ist.',
-                            self.map.ask_person),
-            'beenden': Action('beenden - Beendet das Spiel.',
-                              self.stop),
-            'hilfe': Action('hilfe - Zeigt dir alle zulässigen Befehle.',
-                            self.game_actions.show_list_of_actions),
-            'furze': Action('furze - Furzt in dem Raum und eröffnet dir vielleicht Möglichkeiten',
-                            self.player.fart
-                            )
+            "schaue": Action(
+                "schaue - Zeigt dir, was es in diesem Raum zu sehen gibt.",
+                self.map.look,
+            ),
+            "gehe": Action(
+                "gehe <Richtung> - Gehe in diese Richtung.", self.map.go_in_direction
+            ),
+            "grüße": Action(
+                "grüße <Name> - Begrüße die Person im Raum", self.map.greet_person
+            ),
+            "frage": Action(
+                "frage <Name> - Frage eine Person, wie sie zur Software Entwicklung gekommen ist.",
+                self.map.ask_person,
+            ),
+            "beenden": Action("beenden - Beendet das Spiel.", self.stop),
+            "hilfe": Action(
+                "hilfe - Zeigt dir alle zulässigen Befehle.",
+                self.game_actions.show_list_of_actions,
+            ),
+            "furze": Action(
+                "furze - Furzt in dem Raum und eröffnet dir vielleicht Möglichkeiten",
+                self.player.fart,
+            ),
         }
 
 

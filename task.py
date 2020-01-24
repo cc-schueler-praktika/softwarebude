@@ -1,5 +1,4 @@
 class Task:
-
     def __init__(self, question, solution):
         self.question = question
         self.solution = solution

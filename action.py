@@ -2,7 +2,6 @@ import inspect
 
 
 class Action:
-
     def __init__(self, description, method):
         self.description = description
         self.method = method

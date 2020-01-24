@@ -1,4 +1,3 @@
-
 class Room:
     def __init__(self, name, description):
         self.name = name
@@ -19,9 +18,9 @@ class Room:
             self.persons[person].show_description()
 
     def show_exits(self):
-        for direction in ['Norden', 'Osten', 'Süden', 'Westen']:
+        for direction in ["Norden", "Osten", "Süden", "Westen"]:
             if direction.lower() in self.exits:
-                print('🚪 Tür in Richtung', direction)
+                print("🚪 Tür in Richtung", direction)
 
     def set_exits(self, exits):
         self.exits = exits
@@ -31,14 +30,18 @@ class Room:
 
     def greet_person(self, name):
         if name not in self.persons:
-            print('Hier gibt es keine Person mit den Namen', name, 'die ich grüßen könnte.')
+            print(
+                "Hier gibt es keine Person mit den Namen",
+                name,
+                "die ich grüßen könnte.",
+            )
             return
-        print('Hallo, du!')
+        print("Hallo, du!")
         self.persons[name].say_hello()
 
     def ask_person(self, name):
         if name not in self.persons:
-            print('Hier gibt es keinen', name, 'den ich fragen könnte.')
+            print("Hier gibt es keinen", name, "den ich fragen könnte.")
             return
-        print('Sag mal, wie bist du zur Software Entwicklung gekommen?')
+        print("Sag mal, wie bist du zur Software Entwicklung gekommen?")
         self.persons[name].tell_story()
