@@ -43,6 +43,7 @@ class Map:
         treasure_room = TreasureRoom(
             "Schatzkammer",
             "Die Schatzkammer! Hier sind alle wichtigen Sachen gelagert.",
+            "7854",
         )
 
         stairwell.set_exits({"norden": office, "süden": emergancy_exit})
@@ -95,20 +96,13 @@ class Map:
         self.enter_room(self.current_room, self.current_room.exits[direction])
 
     def enter_room(self, from_room, to_room):
-        if to_room == self.rooms[4]:
-            if not self.rooms[4].lock_treasure_room("7854"):  # Code for treasure_room
-                print("Die Tür bleibt weiterhin verschlossen.")
-                return
+        if not to_room.open():
+            return
+
         print("🚪 Öffne Tür zu Raum", to_room.name)
         self.current_room = to_room
         self.current_room.show_description()
-        if self.current_room == self.rooms[2]:
-            self.rooms[2].escape_room_intro()
-            print("🚪 Du bist Zurück im Serverraum")
-            self.current_room = from_room
-            self.current_room.show_description()
-        if self.current_room == self.rooms[4]:
-            self.rooms[4].intro_treasure_room()
+        self.current_room.intro()
 
     def look(self):
         self.current_room.show_content()

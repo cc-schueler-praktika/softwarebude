@@ -10,7 +10,7 @@ class EscapeRoom(Room):
         self.task = None
         self.count = None
 
-    def escape_room_intro(self):
+    def intro(self):
         self.task = Task(
             "Wie heißt das erste Program, was jeder Programmierer lernt", "hello world"
         )

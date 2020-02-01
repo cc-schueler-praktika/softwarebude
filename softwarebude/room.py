@@ -1,9 +1,19 @@
 class Room:
-    def __init__(self, name, description):
+    def __init__(self, name, description, is_locked=False, task_to_open=None):
         self.name = name
         self.description = description
         self.exits = {}
         self.persons = {}
+        self.isLocked = is_locked
+        self.taskToOpen = task_to_open
+
+    def open(self):
+        if not self.isLocked:
+            return True
+        return self.taskToOpen.run()
+
+    def intro(self):
+        return None
 
     def show_content(self):
         self.show_description()
