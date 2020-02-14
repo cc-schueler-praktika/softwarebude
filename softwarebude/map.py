@@ -82,7 +82,14 @@ class Map:
                     'Text-Adventures (wie dieses) geschrieben habe. Die Möglichkeiten "echte" Probleme, '
                     "wie die Tennisplanung meines Vaters schnell zu lösen, haben mich motiviert mich in diesem "
                     "Thema weiter zu entwicklen.",
-                )
+                ),
+                "miri": Person(
+                    "Miri",
+                    "👩🏻‍💻",
+                    "Ganz zufällig eigentlich. Meine Chemielehrerin hat mir einen Flyer für eine Infoveranstaltung "
+                    "an der Uni Stuttgart gegeben auf der auch der Studiengang Softwaretechnik vorgestellt wurde. "
+                    "Ich war sofort fasziniert von der Vielfältigkeit des Fachgebiets und wusste das passt zu mir.",
+                ),
             }
         )
 
