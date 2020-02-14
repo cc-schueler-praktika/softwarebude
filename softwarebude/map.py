@@ -50,6 +50,7 @@ class Map:
         office.set_exits({"süden": stairwell, "osten": kitchen, "westen": server_room})
         kitchen.set_exits({"westen": office, "norden": treasure_room})
         server_room.set_exits({"osten": office, "süden": escape_room})
+        escape_room.set_exits({"norden": server_room})
         emergancy_exit.set_exits({"norden": stairwell})
         treasure_room.set_exits(({"süden": kitchen}))
 

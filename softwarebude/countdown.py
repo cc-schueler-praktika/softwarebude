@@ -10,12 +10,12 @@ class Countdown(threading.Thread):
         self.countdown_expired = False
 
     def run(self):
-        time.sleep(1)
         print("\nDu hast", str(self.counter), "Sekunden um die Aufgabe zu lösen.")
         self.remaining_time(self.counter)
-        print("\nCountdown ist vorbei!")
-        print("Du bist gefeuert! Drücke beliebige Tast um Spiel zu beenden...")
+        print("\nCountdown ist vorbei! 💥")
+        print("Du bist gefeuert!")
         self.countdown_expired = True
+        self.stop_countdown()
 
     def stop_countdown(self):
         self.task_completed = True

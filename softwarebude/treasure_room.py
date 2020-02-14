@@ -41,4 +41,4 @@ class TreasureRoom(Room):
         print("Der Code lautet", number)
         print("Der Tresor öffnet sich! Was ist das....")
         helper.wait(2)
-        print("...eine Gehaltserhöhung! Du bekommst mehr Geld.")
+        print("...eine Gehaltserhöhung! Du bekommst mehr Geld. 💸")
