@@ -19,7 +19,7 @@ class Task:
     def run(self):
         if self.countdown is not None:
             self.countdown.start()
-        while self.time_to_answer():
+        while self.is_time_to_answer_left():
             answer = input(self.question + " [Tippe 'exit' um abzubrechen]: ")
             if answer.lower() == "exit":
                 self.stop_counter()
@@ -27,10 +27,10 @@ class Task:
             if self.is_answer_correct(answer):
                 self.stop_counter()
                 return True
-            elif self.time_to_answer():
+            elif self.is_time_to_answer_left():
                 print("Das war nicht korrekt.")
 
-    def time_to_answer(self):
+    def is_time_to_answer_left(self):
         if self.countdown is not None:
             return not self.countdown.countdown_expired
         else:

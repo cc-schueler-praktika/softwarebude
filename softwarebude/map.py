@@ -6,9 +6,8 @@ from .treasure_room import TreasureRoom
 
 class Map:
     def __init__(self):
-        self.rooms = []
-        self.init_rooms()
-        self.current_room = self.rooms[0]
+        first_room = self.init_rooms()
+        self.current_room = first_room
         self.enter_room(None, self.current_room)
 
     def init_rooms(self):
@@ -31,7 +30,7 @@ class Map:
             "Serverraum", "Der Serverraum. Ganz schön viele Kabel liegen hier ..."
         )
 
-        emergancy_exit = Room(
+        emergency_exit = Room(
             "Notausgang", "Der Notausgang! Die Sonne scheint und die Vögel zwitschern."
         )
 
@@ -46,12 +45,12 @@ class Map:
             "7854",
         )
 
-        stairwell.set_exits({"norden": office, "süden": emergancy_exit})
+        stairwell.set_exits({"norden": office, "süden": emergency_exit})
         office.set_exits({"süden": stairwell, "osten": kitchen, "westen": server_room})
         kitchen.set_exits({"westen": office, "norden": treasure_room})
         server_room.set_exits({"osten": office, "süden": escape_room})
         escape_room.set_exits({"norden": server_room})
-        emergancy_exit.set_exits({"norden": stairwell})
+        emergency_exit.set_exits({"norden": stairwell})
         treasure_room.set_exits(({"süden": kitchen}))
 
         office.set_persons(
@@ -88,7 +87,7 @@ class Map:
             }
         )
 
-        self.rooms = [stairwell, office, escape_room, server_room, treasure_room]
+        return stairwell
 
     def go_in_direction(self, direction=None):
         if not direction or direction not in self.current_room.exits:

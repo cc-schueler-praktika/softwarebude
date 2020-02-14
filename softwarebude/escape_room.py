@@ -20,7 +20,7 @@ class EscapeRoom(Room):
         print("Ich komme bei diesem Problem nicht weiter. Kannst du es für mich lösen?")
         helper.wait(2)
         print(
-            "Eigentlich hast du keine anderer Möglichkeit. Dafür bezahle ich dich schließlich."
+            "Eigentlich hast du keine andere Möglichkeit. Dafür bezahle ich dich schließlich."
         )
         helper.wait(2)
         task_resolved = self.task.run()
