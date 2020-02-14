@@ -1,4 +1,5 @@
-import time, threading
+import threading
+import time
 
 
 class Countdown(threading.Thread):

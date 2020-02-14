@@ -1,8 +1,9 @@
+import sys
+from random import randint
+
+from . import helper
 from .room import Room
 from .task import Task
-from random import randint
-from . import helper
-import sys
 
 
 class TreasureRoom(Room):
