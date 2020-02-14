@@ -14,11 +14,15 @@ Folgende Vorkenntnisse sind idealerweise vorhanden, wenn dieses Spiel erweitert 
 - eigene Implementierung eines text-basierten Spiels
     - hilft die Problemstellungen besser zu verstehen
     - ermöglicht einen Vergleich dieser Umsetzung mit der eigenen
-    
+
 ## Spiel starten
 Gestartet wird das Spiel über die Konsole wie folgt:
-
 ```
-python3 game.py
+pipenv install
+pipenv run python play.py
 ```
+Weitere Informationen dazu findest du in der Dokumentation von pipenv zum Thema [Verwenden installierter Pakete](https://pipenv.readthedocs.io/en/latest/install/#using-installed-packages)
 
+## Weiterentwicklung
+Du möchtest das Spiel mit deinen eigenen Ideen weiterentwickeln?
+Dann schau dir an [Wie du mitmachen kannst](CONTRIBUTING.md).

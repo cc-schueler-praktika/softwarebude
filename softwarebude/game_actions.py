@@ -1,4 +1,4 @@
-import helper
+from . import helper
 
 
 class GameActions:
@@ -30,11 +30,13 @@ class GameActions:
                 self.show_invalid_action_message()
 
     def show_invalid_action_message(self):
-        print('Tut mir leid, das verstehe ich nicht. Wenn ich dir weiterhelfen kann, dann tippe doch "hilfe"')
+        print(
+            'Tut mir leid, das verstehe ich nicht. Wenn ich dir weiterhelfen kann, dann tippe doch "hilfe"'
+        )
 
     def show_list_of_actions(self):
-        print('-' * 55)
-        print('Folgende Befehle stehen dir zur Verfügung:')
+        print("-" * 55)
+        print("Folgende Befehle stehen dir zur Verfügung:")
         for action in self.actions:
-            print(' -', self.actions[action].description)
-        print('-' * 55)
+            print(" -", self.actions[action].description)
+        print("-" * 55)
