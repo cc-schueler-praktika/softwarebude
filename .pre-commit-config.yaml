@@ -15,6 +15,6 @@ repos:
     rev: stable
     hooks:
         - id: black
-          language_version: python3.8
+          language_version: python3.7
 
 # https://medium.com/staqu-dev-logs/keeping-python-code-clean-with-pre-commit-hooks-black-flake8-and-isort-cac8b01e0ea1
