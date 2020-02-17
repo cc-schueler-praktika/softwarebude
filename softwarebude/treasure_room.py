@@ -7,13 +7,13 @@ from .task import Task
 
 
 class TreasureRoom(Room):
-    def __init__(self, name, description):
-        super().__init__(name, description)
+    def __init__(self, name, description, code):
+        task = Task("Gib zum öffnen der Türe bitte den richtigen Code ein", code)
+        super().__init__(name, description, is_locked=True, task_to_open=task)
         self.name = name
         self.description = description
-        self.task = None
 
-    def intro_treasure_room(self):
+    def intro(self):
         number = randint(0, 999)
         if sys.gettrace():  # if debug mode is on you'll get the number
             print(number)
@@ -41,15 +41,4 @@ class TreasureRoom(Room):
         print("Der Code lautet", number)
         print("Der Tresor öffnet sich! Was ist das....")
         helper.wait(2)
-        print("...eine Gehaltserhöhung! Du bekommst mehr Geld.")
-
-    def lock_treasure_room(self, code):
-        self.task = Task("Gib Code ein: ", code)
-        print("Dieser Raum ist verriegelt.")
-        print('Um zurück zu gehen, gebe "Exit" ein')
-        while True:
-            answer = input(self.task.show_question())
-            if self.task.is_answer_correct(answer):
-                return True
-            if answer == "exit" or answer == "Exit":
-                return False
+        print("...eine Gehaltserhöhung! Du bekommst mehr Geld. 💸")
