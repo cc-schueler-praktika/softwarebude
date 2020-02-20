@@ -11,7 +11,7 @@ class Task:
             self.countdown = None
 
     def is_answer_correct(self, answer):
-        return self.solution == answer
+        return self.solution.lower() == answer
 
     def show_question(self):
         print(self.question + " [Tippe 'exit' um abzubrechen]: ")
@@ -20,8 +20,8 @@ class Task:
         if self.countdown is not None:
             self.countdown.start()
         while self.is_time_to_answer_left():
-            answer = input(self.question + " [Tippe 'exit' um abzubrechen]: ")
-            if answer.lower() == "exit":
+            answer = input(self.question + " [Tippe 'exit' um abzubrechen]: ").lower()
+            if answer == "exit":
                 self.stop_counter()
                 return False
             if self.is_answer_correct(answer):
