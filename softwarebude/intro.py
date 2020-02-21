@@ -1,7 +1,15 @@
+import os
+
+from pyfiglet import Figlet
+
 from . import helper
 
 
 def play():
+    os.system("clear")
+    print("\n\n\n\n")
+    f = Figlet(font="roman")
+    print(f.renderText("Softwarebude"))
     print("Hallo, willkommen im Aufzug von Gebäude 7. Wie ist dein Name?")
     name = helper.read_user_input()
     print(
