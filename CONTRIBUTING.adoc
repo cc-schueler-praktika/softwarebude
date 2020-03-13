@@ -1,0 +1,79 @@
+= Wie du mitmachen kannst
+
+== Python in der richtigen Version
+Wir verwenden in diesem Projekt Python in Version 3.7.
+Wenn du kein Python in dieser Vesion auf deinem Computer installiert hast, dann verwende am besten https://github.com/pyenv/pyenv[pyenv] zum installieren der richtigen Version.
+
+Installiere PyEnv über die https://github.com/pyenv/pyenv-installer[PyEnv Installer]:
+
+----
+curl https://pyenv.run | bash
+----
+
+Eine Python Version installierst du dann wie folgt auf deinem Computer:
+
+----
+pyenv install 3.7
+----
+
+Daraufhin fragt pyenv welche konkrete Python 3.7 Version du installieren möchtest. Wähle hier die aktuelle Version, z.B. `3.7.6` und wiederhole den vorherigen Befehl mit dieser Version.
+
+Nun musst du pyenv sagen, dass du diese Version auch verwenden möchtest.
+Das kannst du über den pyenv Befehl `shell` machen.
+Dieser setzt für deine aktuelle Shell die Python Version auf eine von dir definierte (und installierte) Version.
+
+----
+# Schau, welche Python Version aktuell in deiner Shell verwendet wird. Z.B. Python 2.7.16
+python --version
+
+# Verwende die eben installierte Version 3.7.6
+pyenv shell 3.7.6
+
+# Schau, ob das Setzen der Python Version erfolgreich war
+python --version
+----
+
+== Abhängigkeiten installieren
+
+Zum Installieren aller für das Entwickeln des Spiels notwendigen Abhängigkeiten gehst du wie folgt vor.
+
+=== *Poetry* zum Verwalten von Python Paketen
+Installiere Poetry wie auf der https://python-poetry.org/docs/[Website] angegeben:
+
+----
+curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3
+----
+
+TIP: Achte darauf, dass Poetry mit Python in Version 3 (`python3`) installiert wird.
+
+
+=== Projektabhängigkeiten
+
+Installiere alle Abhängigkeiten für dieses Projekt.
+Führe dazu folgenden Befehl im Rootverzeichnis des Projekts aus:
+
+----
+poetry install
+----
+
+Neue Abhängigkeiten kannst du wie folgt hinzufügen:
+
+----
+poetry add <package-name>
+----
+
+Mehr Informationen dazu findest du in der https://python-poetry.org/docs/cli/#add[Dokumentation von poetry].
+
+=== pre-commit Hooks
+
+Wir verwenden https://pre-commit.com/#intro[pre-commit] um vor jedem Git `commit` den Programmcode einheitlich zu formatieren.
+Zum aktivieren der in `.pre-commit-config.yaml` definierten Hooks, führe bitte folgenden Befehl aus:
+
+----
+poetry run pre-commit install
+----
+
+== Code Formatierung
+
+Wir nutzen https://black.readthedocs.io/en/stable/#[Black] zum automatisierten Formatieren von Python Code.
+Black kannst du auch https://black.readthedocs.io/en/stable/editor_integration.html[für deine Entwicklungsumgebung einrichten].
